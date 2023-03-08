@@ -49,15 +49,41 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String _text = "";
 
-  void _incrementCounter() {
+  void _kelipatan3Counter(){
     setState(() {
+      if(_counter == 100) {
+        _counter = 0;
+      }
+      _counter++;
+
+      _text = 'Kelipatan 3 dari 1 sampai ${_counter}: ';
+      for(int i=0; i<= _counter; i++) {
+        if(i%3 == 0) {
+          _text += '${i}, ';
+        }
+      }
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
+    });
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      if(_counter == 10) {
+        _counter = 0;
+      }
       _counter++;
+
+      if(_counter % 2  == 0) {
+        _text = "Genap";
+      } else {
+        _text = "Ganjil";
+      }
     });
   }
 
@@ -96,11 +122,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'Kelipatan bilangan 3 dari 1 sampai N:',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            Text(
+              _text,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),
