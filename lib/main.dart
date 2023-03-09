@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Hello World Home Page'),
     );
   }
 }
@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 1;
   String _text = "Genap";
   String _textprime = "Prima";
+  String _textsecond = "Ganjil";
 
   void _incrementCounter() {
     setState(() {
@@ -81,6 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
         }
         if(_flag==2)
           _textprime += '${j}, ';
+      }
+
+      _textsecond = "Ganjil: ";
+      for(int i=0; i<=_counter; i++){
+        if(i%2 != 0 ){
+          _textsecond += '${i}, ';
+        }
       }
     });
   }
@@ -128,6 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               _text,
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            Text(
+              _textsecond,
               style: Theme.of(context).textTheme.headline4,
             ),
             Text(
