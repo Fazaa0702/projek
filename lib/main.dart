@@ -48,41 +48,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  String _text = "";
+  int _counter = 1;
+  String _text = "Genap";
+  String _textprime = "Prima";
 
-  void _kelipatan3Counter(){
+  void _incrementCounter() {
     setState(() {
-      if(_counter == 100) {
-        _counter = 0;
-      }
-      _counter++;
-
-      _text = 'Kelipatan 3 dari 1 sampai ${_counter}: ';
-      for(int i=0; i<= _counter; i++) {
-        if(i%3 == 0) {
-          _text += '${i}, ';
-        }
-      }
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-    });
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      if(_counter == 10) {
+      _counter++;
+      if(_counter>30){
         _counter = 0;
       }
-      _counter++;
 
-      if(_counter % 2  == 0) {
-        _text = "Genap";
-      } else {
-        _text = "Ganjil";
+      _text = "Genap: ";
+      for(int i=0; i<=_counter; i++){
+        if(i%2 == 0 && i%3 == 0){
+          _text += '${i}, ';
+        }
+      }
+
+      _textprime = "Prima: ";
+      for(int j=2; j<=_counter; j++){
+        int _flag=0;
+        for(int i=1; i<=j; i++){
+          if(j%i == 0){
+            _flag++;
+          }
+        }
+        if(_flag==2)
+          _textprime += '${j}, ';
       }
     });
   }
@@ -122,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Kelipatan bilangan 3 dari 1 sampai N:',
+              'You have pushed the button this many times:',
             ),
             Text(
               '$_counter',
@@ -130,7 +128,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               _text,
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            Text(
+              _textprime,
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
